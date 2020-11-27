@@ -37,6 +37,7 @@ $res = $service->geocoder_address($address);
 $res = $service->geocoder_location($location);
 参数:@param string $location 坐标值 例如23.08331,113.3172
 返回值：
+```json
   {
      "status": true,
      "code": 200,
@@ -57,10 +58,12 @@ $res = $service->geocoder_location($location);
      "url": "",
      "state": "success"
   }
+  ```
 # 通过IP获取地址
 $res = $service->geocoder_ip($ip);
-参数:@param string $location 坐标值 例如23.08331,113.3172
+参数:@param string $location 坐标值 例如61.135.17.68
 返回值：
+```json
    {
       "status": 0,
       "message": "query ok",
@@ -77,4 +80,5 @@ $res = $service->geocoder_ip($ip);
           "adcode": 110000
       }
   }
+    ```
 
