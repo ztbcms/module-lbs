@@ -7,8 +7,12 @@ use app\lbs\service\TencentMapService;
 $service = new TencentMapService();//腾讯地图服务类
 ```
 # 通过地址获取坐标
+```php
 $res = $service->geocoder_address($address);
-参数: @param string $address 地址（注：地址中请包含城市名称，否则会影响解析效果）
+# 参数: $address 地址（注：地址中请包含城市名称，否则会影响解析效果）
+```
+
+
 返回值：
 ```json
  {
@@ -34,8 +38,11 @@ $res = $service->geocoder_address($address);
 ```
 
 # 通过坐标获取地址
+```php
 $res = $service->geocoder_location($location);
-参数:@param string $location 坐标值 例如23.08331,113.3172
+# 参数:@param string $location 坐标值 例如23.08331,113.3172
+```
+
 返回值：
 ```json
   {
@@ -60,8 +67,12 @@ $res = $service->geocoder_location($location);
   }
   ```
 # 通过IP获取地址
+
+```php
 $res = $service->geocoder_ip($ip);
-参数:@param string $location 坐标值 例如61.135.17.68
+# 参数:@param string $location 坐标值 例如61.135.17.68
+```
+
 返回值：
 ```json
    {
@@ -80,5 +91,5 @@ $res = $service->geocoder_ip($ip);
           "adcode": 110000
       }
   }
-    ```
+```
 

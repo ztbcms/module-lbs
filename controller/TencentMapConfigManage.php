@@ -22,7 +22,6 @@ class TencentMapConfigManage extends AdminController
     /**
      *  腾讯地图配置
      * @throws \think\db\exception\DbException
-     * @return array
      */
     function index()
     {

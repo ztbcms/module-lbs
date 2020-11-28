@@ -8,7 +8,8 @@ CREATE TABLE `cms_lbs_config_tencent` (
 
 INSERT INTO `cms_lbs_config_tencent` (`id`, `key`, `secret_key`)
 VALUES
-	(1, '4LHBZ-R7RKG-FVAQO-I63RU-M3XKF-73BHZ', NULL);
+	(1, '4LHBZ-R7RKG-FVAQO-I63RU-M3XKF-73BHZ', NULL),
+	(2, 'MDNBZ-KIOCW-T6PRJ-OUNPH-VFQ6H-EKBEP', NULL);
 
 
 DROP TABLE IF EXISTS `cms_lbs_address_info`;

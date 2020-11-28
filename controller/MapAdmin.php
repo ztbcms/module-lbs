@@ -13,7 +13,6 @@ use app\lbs\service\TencentMapService;
 use think\facade\Request;
 
 //腾讯地图示例
-
 class MapAdmin extends AdminController
 {
     /**
@@ -23,7 +22,6 @@ class MapAdmin extends AdminController
     {
         return View::fetch('demo');
     }
-
 
     /**
      * 选点返回数据
@@ -47,10 +45,8 @@ class MapAdmin extends AdminController
 
     /**
      * 通过地址解析坐标
-     * @param string $address 地址
-     * @param string $region  指定地址所属城市
-     * @return array
      *
+     * @return \think\response\Json
      */
     function geocoder_address_tencent(){
         $service = new TencentMapService();
@@ -62,8 +58,8 @@ class MapAdmin extends AdminController
 
     /**
      * 通过坐标逆解析地址
-     * @param string $location 坐标
-     * @return array
+     *
+     * @return \think\response\Json
      */
     function geocoder_location_tencent(){
         $service = new TencentMapService();
@@ -74,8 +70,8 @@ class MapAdmin extends AdminController
 
     /**
      * 通过IP解析地址
-     * @param string $location 坐标
-     * @return array
+     *
+     * @return \think\response\Json
      */
     function geocoder_ip_tencent(){
         $service = new TencentMapService();

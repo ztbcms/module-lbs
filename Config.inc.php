@@ -1,9 +1,5 @@
 <?php
 
-// +----------------------------------------------------------------------
-// | 日志信息模块配置
-// +----------------------------------------------------------------------
-
 return array(
 	//模块名称
 	'modulename' => '位置服务',
@@ -12,17 +8,17 @@ return array(
 	//模块简介
 	'introduce' => '位置服务',
 	//模块介绍地址
-	'address' => 'http://doc.ztbcms.com/module/log/',
+	'address' => 'http://doc.ztbcms.com/module/lbs/',
 	//模块作者
-	'author' => 'tan',
+	'author' => 'Trz',
 	//作者地址
 	'authorsite' => 'http://ztbcms.com',
 	//作者邮箱
 	'authoremail' => 'admin@ztbcms.com',
 	//版本号，请不要带除数字外的其他字符
-	'version' => '1.0.1.0',
+	'version' => '1.0.0',
 	//适配最低CMS版本，
-	'adaptation' => '3.7.0.0',
+	'adaptation' => '4.0.0',
 	//签名
 	'sign' => 'd04078c5b86475cd5a0c690b9905953d',
 	//依赖模块
