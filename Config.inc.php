@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
 	//模块名称
 	'modulename' => '位置服务',
 	//图标
@@ -12,9 +12,9 @@ return array(
 	//模块作者
 	'author' => 'Trz',
 	//作者地址
-	'authorsite' => 'http://ztbcms.com',
+	'authorsite' => '',
 	//作者邮箱
-	'authoremail' => 'admin@ztbcms.com',
+	'authoremail' => '1556050788@qq.com',
 	//版本号，请不要带除数字外的其他字符
 	'version' => '1.0.0',
 	//适配最低CMS版本，
@@ -22,9 +22,9 @@ return array(
 	//签名
 	'sign' => 'd04078c5b86475cd5a0c690b9905953d',
 	//依赖模块
-	'depend' => array(),
+	'depend' => [],
 	//行为注册
-	'tags' => array(),
-	//缓存，格式：缓存key=>array('module','model','action')
-	'cache' => array(),
-);
+	'tags' => [],
+	//缓存，格式：缓存key=>['module','model','action']
+	'cache' => [],
+];

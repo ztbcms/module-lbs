@@ -1,8 +1,6 @@
 <?php
 /**
  * User: tan
- * Date: 2019/12/26
- * Time: 13:45
  */
 
 namespace app\lbs\controller;
@@ -163,7 +161,10 @@ class TencentMapConfigManage extends AdminController
         }
     }
 
-    //配置删除
+    /**
+     * 配置删除
+     * @return \think\response\Json|\think\response\View
+     */
     function configDelete()
     {
         $id = Request::param('id', '', 'trim');

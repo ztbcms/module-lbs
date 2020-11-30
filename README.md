@@ -7,89 +7,143 @@ use app\lbs\service\TencentMapService;
 $service = new TencentMapService();//腾讯地图服务类
 ```
 # 通过地址获取坐标
+
 ```php
 $res = $service->geocoder_address($address);
+```
+```php
 # 参数: $address 地址（注：地址中请包含城市名称，否则会影响解析效果）
 ```
 
-
+```php
 返回值：
+```
 ```json
- {
-    "status": true,
-    "code": 200,
-    "data": {
-        "return_status": 0,             // 状态码，0为正常,
-        310请求参数信息有误，
-        311Key格式错误,
-        306请求有护持信息请检查字符串,
-        110请求来源未被授权
-        "return_msg":'query ok',        //状态说明
-        "lat": 23.08331,                //纬度
-        "lng": 113.3172,                //经度
-        "address": "新港东路1088号",    //地址
-        "formatted_addresses":"广州大道南海珠区政府(敦丰路北)"   //经过腾讯地图优化过的描述方式，更具人性化特点,有时为空
-        "ad_info": "中国,广东省,广州市,海珠区"                 //地址部件
-    },
-    "msg": "",
-    "url": "",
-    "state": "success"
- }
+     {
+         code: 200
+         data: {
+             address: "广东省广州市海珠区"
+             city: "广州市"
+             district: "海珠区"
+             lat: "23.08331"
+             lng: "113.3172"
+             province: "广东省"
+             street: ""
+         }
+         msg: ""
+         status: true
+         url: ""
+     }
 ```
 
 # 通过坐标获取地址
 ```php
 $res = $service->geocoder_location($location);
+```
+```php
 # 参数:@param string $location 坐标值 例如23.08331,113.3172
 ```
-
+```php
 返回值：
+```
 ```json
-  {
-     "status": true,
-     "code": 200,
-     "data": {
-         "return_status": 0,             // 状态码，0为正常,
-         310请求参数信息有误，
-         311Key格式错误,
-         306请求有护持信息请检查字符串,
-         110请求来源未被授权
-         "return_msg":'query ok',        //状态说明
-         "lat": 23.08331,                //纬度
-         "lng": 113.3172,                //经度
-         "address": "新港东路1088号",    //地址
-         "formatted_addresses":"广州大道南海珠区政府(敦丰路北)"   //经过腾讯地图优化过的描述方式，更具人性化特点,有时为空
-         "ad_info": "中国,广东省,广州市,海珠区"                 //地址部件
-     },
-     "msg": "",
-     "url": "",
-     "state": "success"
-  }
+    {
+        code: 200
+        data: {
+            address: "广东省广州市海珠区敦丰路"
+            city: "广州市"
+            district: "海珠区"
+            lat: "23.08331"
+            lng: "113.3172"
+            province: "广东省"
+            street: "敦丰路"
+        }
+        msg: ""
+        status: true
+        url: ""
+    }
   ```
 # 通过IP获取地址
 
 ```php
 $res = $service->geocoder_ip($ip);
+```
+```php
 # 参数:@param string $location 坐标值 例如61.135.17.68
 ```
-
+```php
 返回值：
+```
 ```json
-   {
-      "status": 0,
-      "message": "query ok",
-      "result": {
-          "ip": "202.106.0.30",
-          "location": {
-          "lng": 116.407526,
-          "lat": 39.90403
-      },
-      "ad_info": {
-          "nation": "中国",
-          "province": "",
-          "city": "",
-          "adcode": 110000
-      }
+  {
+        code: 200
+        data: {
+            address: "广东省广州市海珠区"
+            city: "广州市"
+            district: "海珠区"
+            lat: "23.08331"
+            lng: "113.3172"
+            province: "广东省"
+        }
+        msg: ""
+        status: true
+        url: ""
   }
+```
+
+##附近搜索(geohash 算法)基于 mysql 实现
+
+###相关链接：
+```php
+geohash php版实现 https://github.com/CloudSide/geohash
+```
+```php
+geohash 示例 http://www.geohash.cn/
+```
+```php
+腾讯坐标拾取器 https://lbs.qq.com/tool/getpoint/index.html
+```
+###使用方法
+```php
+use app\lbs\Service\LbsGeohashService;
+$service = new LbsGeohashService();
+```
+```php
+// 添加位置对象
+$service->geoAdd($target_type, $target_id, $latitude, $longitude);
+```
+```php
+ *参数
+ * @param $target_type 类型，例如ad
+ * @param $target_id 名称，例如上海半岛酒店-水疗中心
+ * @param $longitude 纬度
+ * @param $latitude 经度
+```
+```php
+// 删除的位置对象
+$service->geoRemove($target_type, $target_id);
+```
+```php
+ *参数
+ * @param $target_type 类型，例如ad
+ * @param $target_id 名称，例如上海半岛酒店-水疗中心
+```
+```php
+// 以给定的经纬度为中心，返回目标集合中与中心的距离不超过给定最大距离的所有位置对象
+// 建议对附近搜索的结果进行缓存
+$lists = $service->geoRadius($target_type, $latitude, $longitude, $radius);
+```
+```php
+ *参数
+ * @param $target_type string 类型
+ * @param $latitude string|float 纬度
+ * @param $longitude string|float 经度
+ * @param $radius int 半径 单位：米
+```
+###参考阅读
+```php
+https://www.jianshu.com/p/4d47a8a69c55
+https://segmentfault.com/a/1190000022734787
+https://segmentfault.com/a/1190000017279755
 ```
 
