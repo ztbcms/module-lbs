@@ -14,7 +14,6 @@ use app\lbs\service\LbsConfigService;
 use think\facade\Request;
 
 //腾讯地图配置
-
 class TencentMapConfigManage extends AdminController
 {
     /**
@@ -40,7 +39,8 @@ class TencentMapConfigManage extends AdminController
 
     /**
      * 新增配置地图API秘钥
-     * @return \think\response\Json|\think\response\View
+     *
+     * @return string|\think\response\Json|\think\response\View
      */
     function configTencentAdd()
     {
@@ -55,7 +55,8 @@ class TencentMapConfigManage extends AdminController
 
     /**
      * 编辑配置地图API秘钥
-     * @return \think\response\Json|\think\response\View
+     *
+     * @return string|\think\response\Json|\think\response\View
      */
     function configTencentEdit()
     {
@@ -113,7 +114,8 @@ class TencentMapConfigManage extends AdminController
 
     /**
      * 新增配置
-     * @return \think\response\Json|\think\response\View
+     *
+     * @return string|\think\response\Json|\think\response\View
      */
     function configAdd()
     {
@@ -128,7 +130,8 @@ class TencentMapConfigManage extends AdminController
 
     /**
      * 编辑配置
-     * @return \think\response\Json|\think\response\View
+     *
+     * @return string|\think\response\Json|\think\response\View
      */
     function configEdit()
     {

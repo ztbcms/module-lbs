@@ -312,7 +312,9 @@ class TencentMapService extends BaseService
 
     /**
      * 检查是否过期
-     * @param  array $findres  查询到的地址信息数组
+     *
+     * @param $create_time
+     *
      * @return mixed 返回true 过期/ false 未过期
      */
     static function check_create_time($create_time){

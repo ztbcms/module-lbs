@@ -83,7 +83,7 @@
                     getDetail: function (id) {
                         var that = this
                         $.ajax({
-                            url: "/Lbs/TencentMapConfigManage/getConfigDetail?id="+id,
+                            url: "/lbs/TencentMapConfigManage/getConfigDetail?id="+id,
                             type: "get",
                             dataType: "json",
                             success: function(res){
