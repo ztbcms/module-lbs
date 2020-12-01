@@ -72,31 +72,31 @@ class TencentMapService extends BaseService
     function geocoder_address($address, $region = '')
     {
         //条件判断
-        if(empty($address)){
-            return self::createReturn(false, null,'地址不能为空');
+        if (empty($address)) {
+            return self::createReturn(false, null, '地址不能为空');
         }
-        $url = self::$address.'?address=' . trim($address);
+        $url = self::$address.'?address='.trim($address);
         if (!empty($region)) {
-            $url .= '&region=' . $region;
+            $url .= '&region='.$region;
         }
-        $url .= '&key=' . $this->getKey()['data'];
+        $url .= '&key='.$this->getKey()['data'];
         //检查数据库是否存在
         $checkData = self::checkAddressData($address);
-        if($checkData){
+        if ($checkData) {
             return self::createReturn(true, $checkData);
         }
 
         //发出请求
         $http = $this->_getHttpClient();
         $reponse = $http->get($url, []);
-        $body = (string)$reponse->getBody();
+        $body = (string) $reponse->getBody();
         $body = json_decode($body, true);
         //检查是否请求数据成功
-        if($body['status'] != 0){
-            return self::createReturn(false, null,$body['message']);
+        if ($body['status'] != 0) {
+            return self::createReturn(false, null, $body['message']);
         }
         $result = $body['result'];
-        $data['lat'] =$result['location']['lat'];//纬度
+        $data['lat'] = $result['location']['lat'];//纬度
         $data['lng'] = $result['location']['lng'];//经度
         $data['address'] = $address;//地址
         $data['region'] = $region;//指定地址所属城市
@@ -108,8 +108,8 @@ class TencentMapService extends BaseService
         $data['create_time'] = date('Y-m-d H:i:s');
         $LbsAddressInfoModel = new LbsAddressInfoModel();
         $res = $LbsAddressInfoModel->insert($data);
-        if(!$res){
-            return self::createReturn(false, null,'查询失败,请稍后重试');
+        if (!$res) {
+            return self::createReturn(false, null, '查询失败,请稍后重试');
         }
         return self::createReturn(true, $data);
     }
@@ -137,28 +137,28 @@ class TencentMapService extends BaseService
      */
     function geocoder_location($location)
     {
-        if(empty($location)){
-            return self::createReturn(false, null,'经纬度不能为空');
+        if (empty($location)) {
+            return self::createReturn(false, null, '经纬度不能为空');
         }
         $url = self::$location.'?location='.trim($location);
-        $url .= '&key=' . $this->getKey()['data'];
+        $url .= '&key='.$this->getKey()['data'];
 
         //检查数据库是否存在
         $checkData = self::checkLocationData($location);
-        if($checkData){
+        if ($checkData) {
             return self::createReturn(true, $checkData);
         }
         //发出请求
         $http = $this->_getHttpClient();
         $reponse = $http->get($url, []);
-        $body = (string)$reponse->getBody();
+        $body = (string) $reponse->getBody();
         $body = json_decode($body, true);
         //检查是否请求数据成功
-        if($body['status'] != 0){
-            return self::createReturn(false, null,$body['message']);
+        if ($body['status'] != 0) {
+            return self::createReturn(false, null, $body['message']);
         }
         $result = $body['result'];
-        $data['lat'] =$result['location']['lat'];//纬度
+        $data['lat'] = $result['location']['lat'];//纬度
         $data['lng'] = $result['location']['lng'];//经度
         $data['address'] = $result['address'];//地址
         $data['province'] = $result['address_component']['province'];//省份
@@ -169,8 +169,8 @@ class TencentMapService extends BaseService
         $data['create_time'] = date('Y-m-d H:i:s');
         $LbsLocationInfoModel = new LbsLocationInfoModel();
         $res = $LbsLocationInfoModel->insert($data);
-        if(!$res){
-            return self::createReturn(false, null,'查询失败,请稍后重试');
+        if (!$res) {
+            return self::createReturn(false, null, '查询失败,请稍后重试');
         }
         return self::createReturn(true, $data);
     }
@@ -196,15 +196,15 @@ class TencentMapService extends BaseService
      */
     function geocoder_ip($ip)
     {
-        if(empty($ip)){
-            return self::createReturn(false, null,'IP不能为空');
+        if (empty($ip)) {
+            return self::createReturn(false, null, 'IP不能为空');
         }
         $url = self::$ip.'?ip='.$ip;
-        $url .= '&key=' . $this->getKey()['data'];
+        $url .= '&key='.$this->getKey()['data'];
 
         //检查数据库是否存在
         $checkData = self::checkIpData($ip);
-        if($checkData){
+        if ($checkData) {
             $checkData['address'] = $checkData['procince'].$checkData['city'].$checkData['region'];
             return self::createReturn(true, $checkData);
         }
@@ -212,16 +212,17 @@ class TencentMapService extends BaseService
         //发出请求
         $http = $this->_getHttpClient();
         $reponse = $http->get($url, []);
-        $body = (string)$reponse->getBody();
+        $body = (string) $reponse->getBody();
         $body = json_decode($body, true);
         //检查数据请求是否成功
-        if($body['status'] != 0){
-            return self::createReturn(false, null,$body['message']);
+        if ($body['status'] != 0) {
+            return self::createReturn(false, null, $body['message']);
         }
 
         $result = $body['result'];
-        $data['lat'] =$result['location']['lat'];//纬度
+        $data['lat'] = $result['location']['lat'];//纬度
         $data['lng'] = $result['location']['lng'];//经度
+        $data['nation'] = $result['ad_info']['nation'];//省份
         $data['province'] = $result['ad_info']['province'];//省份
         $data['city'] = $result['ad_info']['city'];//城市
         $data['district'] = $result['ad_info']['district'];//地区
@@ -229,10 +230,10 @@ class TencentMapService extends BaseService
         $data['ip'] = $ip;
         $LbsIpInfoModel = new LbsIpInfoModel ();
         $res = $LbsIpInfoModel->insert($data);
-        if(!$res){
-            return self::createReturn(false, null,'查询失败,请稍后重试');
+        if (!$res) {
+            return self::createReturn(false, null, '查询失败,请稍后重试');
         }
-        $data['address'] = $data['province'].$data['city'].$data['district'];
+        $data['address'] = $data['nation'].$data['province'].$data['city'].$data['district'];
         return self::createReturn(true, $data);
     }
 
@@ -242,22 +243,21 @@ class TencentMapService extends BaseService
      */
     static function checkLocationData($location)
     {
-        $location = explode(',',$location);
+        $location = explode(',', $location);
         $where = [];
         $where['lat'] = $location[0];
         $where['lng'] = $location[1];
         $LbsLocationInfoModel = new LbsLocationInfoModel();
         $checkData = $LbsLocationInfoModel->where($where)->field('lat,lng,address,province,city,district,street,create_time')->find();
-        if($checkData){
+        if ($checkData) {
             //检测坐标是否过期
-            if(self::check_create_time($checkData['create_time']))
-            {
+            if (self::check_create_time($checkData['create_time'])) {
                 return $checkData;
-            }else{
+            } else {
                 $checkData->delete();
                 return false;
             }
-        }else{
+        } else {
             return false;
         }
     }

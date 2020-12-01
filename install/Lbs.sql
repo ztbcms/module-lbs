@@ -1,25 +1,3 @@
-/*
- Navicat Premium Data Transfer
-
- Source Server         : localhost
- Source Server Type    : MySQL
- Source Server Version : 50726
- Source Host           : localhost:3306
- Source Schema         : ztbcms
-
- Target Server Type    : MySQL
- Target Server Version : 50726
- File Encoding         : 65001
-
- Date: 30/11/2020 16:34:30
-*/
-
-SET NAMES utf8mb4;
-SET FOREIGN_KEY_CHECKS = 0;
-
--- ----------------------------
--- Table structure for ztb_lbs_address_info
--- ----------------------------
 DROP TABLE IF EXISTS `cms_lbs_address_info`;
 CREATE TABLE `cms_lbs_address_info`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -36,11 +14,8 @@ CREATE TABLE `cms_lbs_address_info`  (
   `update_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `address`(`address`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '地址信息表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB  CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '地址信息表' ROW_FORMAT = Dynamic;
 
--- ----------------------------
--- Table structure for ztb_lbs_config
--- ----------------------------
 DROP TABLE IF EXISTS `cms_lbs_config`;
 CREATE TABLE `cms_lbs_config`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -48,33 +23,22 @@ CREATE TABLE `cms_lbs_config`  (
   `value` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '值',
   `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '标题名称',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '腾讯地图基本配置表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '腾讯地图基本配置表' ROW_FORMAT = Dynamic;
 
--- ----------------------------
--- Records of ztb_lbs_config
--- ----------------------------
 INSERT INTO `cms_lbs_config` VALUES (1, 'time', '30', '地址缓存更新时间(天)');
 
--- ----------------------------
--- Table structure for ztb_lbs_config_tencent
--- ----------------------------
 DROP TABLE IF EXISTS `cms_lbs_config_tencent`;
 CREATE TABLE `cms_lbs_config_tencent`  (
   `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `key` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '键',
   `secret_key` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '值',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '腾讯地图秘钥配置表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '腾讯地图秘钥配置表' ROW_FORMAT = Dynamic;
 
--- ----------------------------
--- Records of ztb_lbs_config_tencent
--- ----------------------------
+
 INSERT INTO `cms_lbs_config_tencent` VALUES (1, '4LHBZ-R7RKG-FVAQO-I63RU-M3XKF-73BHZ', NULL);
 INSERT INTO `cms_lbs_config_tencent` VALUES (2, 'MDNBZ-KIOCW-T6PRJ-OUNPH-VFQ6H-EKBEP', NULL);
 
--- ----------------------------
--- Table structure for ztb_lbs_geohash
--- ----------------------------
 DROP TABLE IF EXISTS `cms_lbs_geohash`;
 CREATE TABLE `cms_lbs_geohash`  (
   `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -86,30 +50,27 @@ CREATE TABLE `cms_lbs_geohash`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `target_type`(`target_type`) USING BTREE,
   INDEX `geohash`(`geohash`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 
--- ----------------------------
--- Table structure for ztb_lbs_ip_info
--- ----------------------------
+
 DROP TABLE IF EXISTS `cms_lbs_ip_info`;
 CREATE TABLE `cms_lbs_ip_info`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `ip` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT 'IP地址',
-  `lat` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '纬度',
-  `lng` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '经度',
-  `province` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '省份',
-  `city` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '市',
-  `district` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '区，可能为空字串',
-  `create_time` datetime(0) NOT NULL COMMENT '创建时间',
-  `update_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '修改时间',
+  `ip` varchar(100) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT 'IP地址',
+  `lat` varchar(255) CHARACTER SET utf8 NOT NULL COMMENT '纬度',
+  `lng` varchar(255) CHARACTER SET utf8 NOT NULL COMMENT '经度',
+  `nation` varchar(255) NOT NULL COMMENT '国家',
+  `province` varchar(255) NOT NULL DEFAULT '' COMMENT '省份',
+  `city` varchar(255) NOT NULL DEFAULT '' COMMENT '市',
+  `district` varchar(255) NOT NULL DEFAULT '' COMMENT '区，可能为空字串',
+  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `ip`(`ip`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = 'IP信息表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB  CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = 'IP信息表' ROW_FORMAT = Dynamic;
 
--- ----------------------------
--- Table structure for ztb_lbs_location_info
--- ----------------------------
+
 DROP TABLE IF EXISTS `cms_lbs_location_info`;
 CREATE TABLE `cms_lbs_location_info`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -126,6 +87,5 @@ CREATE TABLE `cms_lbs_location_info`  (
   `update_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `lat`(`lat`, `lng`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '坐标信息表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB  CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '坐标信息表' ROW_FORMAT = Dynamic;
 
-SET FOREIGN_KEY_CHECKS = 1;
