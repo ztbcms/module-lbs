@@ -1,9 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
  * User: tan
- * Date: 2020-09-08
- * Time: 09:16.
  */
 
 namespace app\lbs\service;

@@ -1,9 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
  * User: tan
- * Date: 2020-09-08
- * Time: 09:16.
  */
 
 namespace app\lbs\service;
@@ -66,10 +63,11 @@ class LbsConfigService extends BaseService
      * 获取配置信息
      * @param $key
      */
-    static function getConfigByKey($key){
+    static function getConfigByKey($key)
+    {
         $where = null;
-        if($key) $where['key'] = $key;
+        if ($key) $where['key'] = $key;
         $LbsConfigModel = new LbsConfigModel();
-        return $LbsConfigModel->where($where)->value('value')?:0;
+        return $LbsConfigModel->where($where)->value('value') ?: 0;
     }
 }

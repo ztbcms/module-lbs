@@ -1,8 +1,6 @@
 <?php
 /**
  * User: tan
- * Date: 2019/12/26
- * Time: 13:45
  */
 
 namespace app\lbs\controller;
@@ -24,7 +22,7 @@ class MapAdmin extends AdminController
     }
 
     /**
-     * 选点返回数据
+     * 拾取器
      */
     function select_address_tencent()
     {
@@ -34,7 +32,7 @@ class MapAdmin extends AdminController
     }
 
     /**
-     * 选点返回数据
+     * 地图拾点
      */
     function select_address_tencentV2()
     {
@@ -61,7 +59,8 @@ class MapAdmin extends AdminController
      *
      * @return \think\response\Json
      */
-    function geocoder_location_tencent(){
+    function geocoder_location_tencent()
+    {
         $service = new TencentMapService();
         $location = Request::param('location');
         $res = $service->geocoder_location($location);
@@ -73,7 +72,8 @@ class MapAdmin extends AdminController
      *
      * @return \think\response\Json
      */
-    function geocoder_ip_tencent(){
+    function geocoder_ip_tencent()
+    {
         $service = new TencentMapService();
         $ip = Request::param('ip');
         $res = $service->geocoder_ip($ip);
