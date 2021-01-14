@@ -153,7 +153,7 @@
                         layer.open({
                             type: 2,
                             title: '操作',
-                            content: "/Lbs/MapAdmin/select_address_tencent",
+                            content: "/lbs/MapAdmin/select_address_tencent",
                             area: ['50%', '80%'],
                         })
                     },
@@ -161,7 +161,7 @@
                         layer.open({
                             type: 2,
                             title: '操作',
-                            content: "/Lbs/MapAdmin/select_address_tencentV2",
+                            content: "/lbs/MapAdmin/select_address_tencentV2",
                             area: ['50%', '80%'],
                         })
                     },
@@ -180,7 +180,7 @@
                         var that = this;
                         console.log(event)
                         var result = event.detail.result
-                        var url = '/Lbs/MapAdmin/geocoder_location_tencent?location='+result.lat+','+result.lng
+                        var url = '/lbs/MapAdmin/geocoder_location_tencent?location='+result.lat+','+result.lng
                         $.get(url, function (res) {
                             console.log(res);
                             if(res.status){
@@ -190,7 +190,7 @@
                     },
                     //地址转坐标
                     to_geocoder_address_tencent: function(){
-                        var url = '/Lbs/MapAdmin/geocoder_address_tencent?address=' + this.form1.address + '&region=' + this.form1.region
+                        var url = '/lbs/MapAdmin/geocoder_address_tencent?address=' + this.form1.address + '&region=' + this.form1.region
                         var that = this
                         $.get(url,function (res) {
                             if(res.status){
@@ -201,7 +201,7 @@
 
                     //坐标转地址
                     to_geocoder_location_tencent: function(){
-                        var url = '/Lbs/MapAdmin/geocoder_location_tencent?location='+ this.form1.location
+                        var url = '/lbs/MapAdmin/geocoder_location_tencent?location='+ this.form1.location
                         var that = this
                         $.get(url,function (res) {
                             if(res.status){
@@ -214,7 +214,7 @@
 
                     //IP定位地理位置
                     to_geocoder_ip_tencent: function(){
-                        var url = '/Lbs/MapAdmin/geocoder_ip_tencent?ip='+ this.form1.ip
+                        var url = '/lbs/MapAdmin/geocoder_ip_tencent?ip='+ this.form1.ip
                         var that = this
                         $.get(url,function (res) {
                             if(res.status){

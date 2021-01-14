@@ -149,7 +149,7 @@
                     getList: function () {
                         var that = this;
                         $.ajax({
-                            url: "/Lbs/TencentMapConfigManage/getList",
+                            url: "/lbs/TencentMapConfigManage/getList",
                             type: "post",
                             dataType: "json",
                             data: that.listQuery,
@@ -165,7 +165,7 @@
 
 
                         $.ajax({
-                            url: "/Lbs/TencentMapConfigManage/getKeyconfig",
+                            url: "/lbs/TencentMapConfigManage/getKeyconfig",
                             type: "post",
                             dataType: "json",
                             data: { },
@@ -181,7 +181,7 @@
                     doDelete: function (id) {
                         var that = this;
                         $.ajax({
-                            url: "/Lbs/TencentMapConfigManage/configTencentDelete",
+                            url: "/lbs/TencentMapConfigManage/configTencentDelete",
                             type: "post",
                             dataType: "json",
                             data: {id: id},
@@ -255,7 +255,7 @@
                     doDeleteConfig: function (id) {
                         var that = this;
                         $.ajax({
-                            url: "/Lbs/TencentMapConfigManage/configDelete",
+                            url: "/lbs/TencentMapConfigManage/configDelete",
                             type: "post",
                             dataType: "json",
                             data: {id: id},
